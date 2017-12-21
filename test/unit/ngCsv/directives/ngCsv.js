@@ -472,7 +472,7 @@ describe('ngCsv directive', function () {
         // for some reason blob.type can't be querried with PhantomJS - therefore I created typeForTest.
         // It will be available only in test!
         // It shall be removed when updating PhantomJS to 2.0
-        expect(blob.type || blob.typeForTest()).toBe("attachment/csv;charset=utf-8;");
+        expect(blob.type || blob.typeForTest()).toBe("text/plain;charset=utf-8;");
       };
 
       angular.element(element).triggerHandler('click');
@@ -487,7 +487,7 @@ describe('ngCsv directive', function () {
         '</div>')($rootScope);
 
       window.URL.createObjectURL = function (blob) {
-        expect(blob.type).toBe("attachment/csv;charset=utf-8;");
+        expect(blob.type).toBe("text/plain;charset=utf-8;");
       };
 
       angular.element(element).triggerHandler('click');
@@ -501,7 +501,7 @@ describe('ngCsv directive', function () {
         '</div>')($rootScope);
 
       window.URL.createObjectURL = function (blob) {
-        expect(blob.type).toBe("attachment/csv;charset=iso-8859-1;");
+        expect(blob.type).toBe("text/plain;charset=iso-8859-1;");
       };
 
       angular.element(element).triggerHandler('click');
