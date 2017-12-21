@@ -92,7 +92,7 @@ angular.module('ngCsv.directives').
         function doClick() {
           var charset = scope.charset || "utf-8";
           var blob = new Blob([scope.csv], {
-            type: "text/plain;charset="+ charset + ";"
+            type: "application/octet-stream;charset="+ charset + ";"
           });
 
           if (window.navigator.msSaveOrOpenBlob) {
