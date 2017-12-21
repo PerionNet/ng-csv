@@ -156,14 +156,14 @@ describe('ngCsv directive', function () {
     $rootScope.testDelim = [ {a:1, b:2, c:3}, {a:4, b:5, c:6} ];
     var element = $compile(
       '<div ng-csv="testDelim" csv-label="true" filename="custom.csv"></div>')($rootScope);
-    
+
     $rootScope.$digest();
 
     var scope = element.isolateScope();
 
     // Check that the compiled element contains the templated content
     expect(scope.$eval(scope.data)).toEqual($rootScope.testDelim);
-    
+
 
     scope.buildCSV(scope.data).then(function() {
       expect(scope.csv).toBe('a,b,c\r\n1,2,3\r\n4,5,6\r\n');
@@ -472,7 +472,7 @@ describe('ngCsv directive', function () {
         // for some reason blob.type can't be querried with PhantomJS - therefore I created typeForTest.
         // It will be available only in test!
         // It shall be removed when updating PhantomJS to 2.0
-        expect(blob.type || blob.typeForTest()).toBe("text/csv;charset=utf-8;");
+        expect(blob.type || blob.typeForTest()).toBe("attachment/csv;charset=utf-8;");
       };
 
       angular.element(element).triggerHandler('click');
@@ -487,7 +487,7 @@ describe('ngCsv directive', function () {
         '</div>')($rootScope);
 
       window.URL.createObjectURL = function (blob) {
-        expect(blob.type).toBe("text/csv;charset=utf-8;");
+        expect(blob.type).toBe("attachment/csv;charset=utf-8;");
       };
 
       angular.element(element).triggerHandler('click');
@@ -501,7 +501,7 @@ describe('ngCsv directive', function () {
         '</div>')($rootScope);
 
       window.URL.createObjectURL = function (blob) {
-        expect(blob.type).toBe("text/csv;charset=iso-8859-1;");
+        expect(blob.type).toBe("attachment/csv;charset=iso-8859-1;");
       };
 
       angular.element(element).triggerHandler('click');
